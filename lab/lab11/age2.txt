@@ -1,0 +1,8 @@
+Sophia,95
+Jackson,56
+Emma,95
+Aiden,42
+Olivia,68
+Lucas,75
+Ava,86
+Liam,92
