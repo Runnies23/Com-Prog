@@ -3,6 +3,8 @@ high = int(input("How high the frog can jump up? "))
 far = int(input("How far the frog slips down? "))
 
 def function(depth,high,far):
+    if depth == high or depth == 0:
+        return True, 1
     if high > far and depth > high:
         index = 1
         while depth > 0:
