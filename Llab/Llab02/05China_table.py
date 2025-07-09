@@ -1,11 +1,9 @@
 
 def plus(total,value):
-
     return total + value
 
 def minus(total,value):
     return total - value
-
 
 class Runner():
     def __init__(self):
