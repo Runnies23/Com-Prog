@@ -19,9 +19,19 @@ class Runner():
             if current == i:
                 count += 1
             else: 
+                try: 
+                    current = int(current)
+                except:
+                    pass
                 self.dict_data.append([current] * count)
                 current = i
                 count = 1
+
+        
+        try: 
+            current = int(current)
+        except:
+            pass
         self.dict_data.append([current] * count)
         self.print_output(self.dict_data)
         return 

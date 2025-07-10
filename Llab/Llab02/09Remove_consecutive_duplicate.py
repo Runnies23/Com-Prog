@@ -10,13 +10,15 @@ class Runner():
         self.data = [i for i in input("InputList: ").replace(']','').replace('[','').replace(' ','').replace("'",'').replace("'",'').split(',')]
 
     def run(self):
+        pass_val = None
         for i in self.data:
-            if i not in self.seen:
-                self.seen.add(i)
+            if i != pass_val:
+                pass_val = i 
                 try:
                     self.result.append(int(i))
                 except:
                     self.result.append(i)
+
 
         print(self.result)
 

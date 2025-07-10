@@ -1,3 +1,4 @@
+# missing case shift minus like -1, -2 
 
 horizontal = int(input("Enter horizontal shift size: "))
 vertical = int(input("Enter vertical shift size: "))
@@ -17,13 +18,20 @@ while status:
 #detail about size image that is width and height
 image_detail_h_w = [len(text_image), len(text_image[0])]
 
-#add image padding on vertical 
-new_image = ["0" * image_detail_h_w[1] for _ in range(vertical)]
-#add image padding on horizontal
-for rows in text_image[:-vertical]:
-    new_image.append(("0" * horizontal) + rows[:-horizontal])
+if vertical >= 0:
+    new_image = [padding_text * image_detail_h_w[1] for _ in range(vertical)] + text_image[:image_detail_h_w[0] - vertical]
+else:
+    new_image = text_image[-vertical:] + [padding_text * image_detail_h_w[1] for _ in range(abs(vertical))]
+
+result_image = []
+if horizontal >= 0:
+    for rows in new_image:
+        result_image.append((padding_text * horizontal) + rows[:image_detail_h_w[1] -horizontal])
+else: 
+    for rows in new_image:
+        result_image.append(rows[-horizontal:] + (padding_text * abs(horizontal)))
 
 print("After shift:")
 #print the padding image text
-for i in new_image:
+for i in result_image:
     print(i)

@@ -18,24 +18,22 @@ bsxz
 first_str = input("Input string: ")
 second_str = input("Input string: ")
 
+# seen = set()
+seen = []
 
-seen = set()
+for ch in first_str:
+    if ch in second_str and ch not in seen:
+        seen.append(ch)
 
-def add_and_drop(str, text):
-    seen.add(str)
+def add_and_drop(text, set_val):
+    result = ''
+    for ch in text:
+        if ch not in set_val:
+            result += ch
+    return result
 
-    return text.replace(str,'')
-
-first_str = add_and_drop(first_str[0],first_str)
-first_str = add_and_drop(first_str[1],first_str)
-# first_str = add_and_drop(first_str[2],first_str)
-for char in second_str:
-    if char in seen:
-        second_str = second_str.replace(char,'')
-
-result_text = []
-result_text.append(first_str)
-result_text.append(second_str)
+first_str = add_and_drop(first_str,seen)
+second_str = add_and_drop(second_str,seen)
 
 
-print("".join(result_text))
+print(first_str+second_str)

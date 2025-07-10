@@ -19,8 +19,8 @@ Example (shell mode)
 """
 
 def countStr(strs):
-    lst = [i for i in strs if i[0] == i[-1]]
+    lst = [i for i in strs if i[0] == i[-1] and len(i) > 1]
     return len(lst)
 
-text = input().split()
+text = input('Enter a set of strings: ').split()
 print(countStr(text))
