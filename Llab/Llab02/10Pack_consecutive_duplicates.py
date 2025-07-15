@@ -27,7 +27,6 @@ class Runner():
                 current = i
                 count = 1
 
-        
         try: 
             current = int(current)
         except:
