@@ -10,9 +10,16 @@ class MyMath():
     def fac(self, n):
         if n == 1: #base case 
             return 1 
-        return n * self.fac(n - 1) # recursive 
+        return n * self.fac(n - 1) # recursive
     
-    
+    # def fac(self, n):
+    #     cache = dict()
+    #     if n in cache:
+    #         return cache[n]
+    #     else: 
+    #         if n == 1:
+    #             return 1
+    #         return n * self.fac(n - 1)
         
     def is_prime(self, n):
         for i in range(2, n):

@@ -3,29 +3,31 @@
 # # # val = "2, 4, 6, 8, 10, 12, 14, 16, 18, 20"
 # # # target = 16
 
-# val = input("ข้อมูล: ")
-# target = int(input("ค่าที่ต้องการหา: "))
+#While loop binary search 
+#==============================================
+val = input("ข้อมูล: ")
+target = int(input("ค่าที่ต้องการหา: "))
 
-# val = [int(i) for i in val.split(", ")]
+val = [int(i) for i in val.split(", ")]
 
-# n = len(val)
+n = len(val)
 
-# total = 0
-# l = 0
-# r = n - 1
-# while l <= r:
-#     total += 1
-#     print(val[l:r])
-#     mid = (l + r) // 2
-#     item = val[mid]
-#     if item == target:
-#         print(f"จำนวนครั้งที่ค้นหา: {total}")
-#         break
-#     if item > target:
-#         r = mid - 1
-#     else: 
-#         l = mid + 1
-
+total = 0
+l = 0
+r = n - 1
+while l <= r:
+    total += 1
+    print(val[l:r])
+    mid = (l + r) // 2
+    item = val[mid]
+    if item == target:
+        print(f"จำนวนครั้งที่ค้นหา: {total}")
+        break
+    if item > target:
+        r = mid - 1
+    else: 
+        l = mid + 1
+#==============================================
 
 
 # Labels ===================================
@@ -47,6 +49,10 @@
 # Labels ===================================
 
 
+#==============================================
+"""
+Recursive Binary search (adjust on while loop binary search)
+"""
 def recursive_binary(target, array, left:int = 0, right=None, count:int=0):
     if right is None: 
         right = len(array) - 1
@@ -66,3 +72,4 @@ target = int(input("ค่าที่ต้องการหา: "))
 val = [int(i) for i in val.split(", ")]
 
 print(f"จำนวนครั้งที่ค้นหา: {recursive_binary(target=target, array=val)}")
+#==============================================
