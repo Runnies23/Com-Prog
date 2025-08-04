@@ -1,23 +1,12 @@
-import math
 
-def generate_right_triangles_with_perimeter(P):
-    triangles = []
-    for m in range(2, int(math.sqrt(P // 2)) + 1):
-        for n in range(1 + m % 2, m, 2):  # opposite parity
-            if math.gcd(m, n) != 1:
-                continue
-            a = m*m - n*n
-            b = 2*m*n
-            c = m*m + n*n
-            p = a + b + c
-            if P % p == 0:
-                k = P // p
-                triangle = tuple(sorted((k*a, k*b, k*c)))
-                triangles.append(triangle)
-    return triangles
+# p = 12
+p = int(input())
 
-# Example
-P = 13080
-result = generate_right_triangles_with_perimeter(P)
-for tri in result:
-    print(tri)
+most = 0
+for a in range(1,p // 2):
+    c = ((p**2) + (2* (a ** 2)) - (2 * p * a)) / (2 * (p-a))
+    print(c)
+    if str(c).endswith(".0"):
+        most = max(most, int(c))
+
+print(most)

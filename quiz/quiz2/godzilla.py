@@ -8,7 +8,7 @@ matrix = [
     [3,3,3,3,3]
 ]
 
-seq = "E"
+seq = "N"
 
 def north(): #up to down 
     for i in range(n):

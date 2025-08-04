@@ -1,5 +1,5 @@
-1. Grader
-2. treature
-3. grab
-4. gozilla 
-5. triangle
+1. Grader (miss 1 case)
+2. treature (clear)
+3. grab (miss 4 case)
+4. gozilla (clear)
+5. triangle (have 4-5 case [not sure])
