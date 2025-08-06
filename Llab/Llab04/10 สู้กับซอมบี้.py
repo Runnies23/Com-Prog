@@ -1,5 +1,6 @@
 people, zombies = [int(i) for i in input().split()]
 
+#====== brute force ======
 store_time = [0] * people
 time_people = []
 
@@ -16,8 +17,9 @@ while zombies > 0:
             zombies -= 1
             if zombies == 0:
                 continue
-        
-        
 
 print(time)
+
+# ====== Min Heap ======
+# Library 
         
