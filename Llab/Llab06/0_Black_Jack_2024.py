@@ -316,3 +316,34 @@ elif q==9:
     testcase09()
 elif q==10:
     testcase10()
+
+
+
+# Welcome to MikeLab BlackJack Casino.
+#  Computer: O♥ A♠           -> 11
+#    Player: 6♣ 2♦           -> 8
+# Draw another card (y/n): y
+#    Player: 6♣ 2♦ J♠        -> 18
+# Draw another card (y/n): y
+#    Player: 6♣ 2♦ J♠ 3♠     -> 21
+# +++++++++++++++++++++++++++++++++
+#  Computer: 9♥ A♠ A♣        -> 21 ???? 9 + A == 20 but the condision is if more less than 16 draw another card
+#    Player: 6♣ 2♦ J♠ 3♠     -> 21
+# ++++++++++++++++++++++++++++++++++++++++++++++++++
+# Draw!
+# ++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+# Welcome to MikeLab BlackJack Casino.
+#  Computer: O♥ A♠           -> 11
+#    Player: 6♣ 2♦           -> 8
+# Draw another card (y/n): y
+#    Player: 6♣ 2♦ J♠        -> 18
+# Draw another card (y/n): y
+#    Player: 6♣ 2♦ J♠ 3♠     -> 21
+# +++++++++++++++++++++++++++++++++
+#  Computer: 9♥ A♠           -> 20
+#    Player: 6♣ 2♦ J♠ 3♠     -> 21
+# ++++++++++++++++++++++++++++++++++++++++++++++++++
+# Player wins.
+# ++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -5,3 +5,7 @@ __pycache__
 midterm.ipynb
 temp.ipynb
 .DS_Store
+
+
+#ignore jenta file blackjack 
+jenta_black.py
