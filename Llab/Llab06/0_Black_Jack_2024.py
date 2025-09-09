@@ -126,19 +126,9 @@ def createVirtualDeck(s='K♣ Q♠ A♣ 3♥ 2♠ 6♥ 8♥ 9♥ J♠ 4♦ 2♥ 
     deck = Deck()
     deck.set_cards(res)
     return deck
-###
-# test_turtle_deck(True)
-###
-#--------------------------------------------------------------------------------------
-# put your additional class or def (aka., utilities) here
-# for example,
-# class myCards:
-#     ''' myCard(): ลิสเก็บไพ่ที่ผู้เล่นถืออยู่ '''
-#     pass
-#
-# def print_result(com, player, com_score, player_score):
-#     pass
-#--------------------------------------------------------------------------------------
+
+
+#==============================================Submist this block (start) ==============================================
 
 class myCard:
     ''' myCard(): ลิสเก็บไพ่ที่ผู้เล่นถืออยู่ '''
@@ -186,13 +176,20 @@ class myCard:
         print(f"{self.name:>9}: {" ".join([str(i) for i in self.card]) :<16}-> {self.score}")
 
     def checkEndGame(self):
-        #check Blackjack (10 and A) and check total card == 5
         if self.score == 21 or len(self.card) == 5 or self.score > 21:
             return True
 
-    def get_more_card(self):
-        if self.score <= 16:
+    def get_more_card(self, player_score, player_card):
+        if self.score <= 16 or (self.score < player_score and player_score <= 21) or (player_card == 5 and player_score <= 21):
             return True
+        
+    def check_blackjack(self):
+        if (self.score == 21 and len(self.card) == 2):
+            return True
+        if (self.score <= 21 and len(self.card) == 5):
+            return True
+        else: 
+            False
 
 
 def print_result(com, player, com_score, player_score):
@@ -205,12 +202,23 @@ def print_result(com, player, com_score, player_score):
 
     if com_score == player_score:
         print(f"Draw!")
-    elif (com_score > player_score and com_score <= 21) or (com_score <= 21 and player_score > 21):
+    elif com.check_blackjack() and player.check_blackjack():
+        print(f"Draw!")
+    
+    elif com.check_blackjack() and not player.check_blackjack():print(f"{com.name} wins.")
+    elif not com.check_blackjack() and  player.check_blackjack():print(f"{player.name} wins.")
+
+
+
+    elif (com_score > player_score and com_score <= 21) or (com_score <= 21 and player_score > 21) or (com.check_blackjack() and not player.check_blackjack()):
         print(f"{com.name} wins.")
-    elif (player_score > com_score and player_score <= 21) or (com_score > 21 and player_score <= 21):
+    elif (player_score > com_score and player_score <= 21) or (com_score > 21 and player_score <= 21) or (not com.check_blackjack() and player.check_blackjack()):
         print(f"{player.name} wins.")        
         
     print("++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+#==============================================Submist this block (end) ==============================================
+
 
 def play(player1='Computer', player2='Player', d=None, RENDER=False):
     print('Welcome to MikeLab BlackJack Casino.')
@@ -220,11 +228,10 @@ def play(player1='Computer', player2='Player', d=None, RENDER=False):
         deck = Deck()
         deck.reset()
     else:
-        #----------------------------- virtual deck
-        #d = 'A♦ A♥ 3♥ 4♣ 4♥ 7♣ 5♣ 6♦ A♠'
+
         deck = createVirtualDeck(d)
-    #----------------------
-    # print(deck)
+
+#==============================================Submist this block (start) ==============================================
 
     p1 = myCard(name=player1)
     p2 = myCard(name=player2)
@@ -238,8 +245,8 @@ def play(player1='Computer', player2='Player', d=None, RENDER=False):
     p2.print_normal()
 
     while True:
-        if len(p2.card) == 5:break
-        if p2.score == 21:break
+        if len(p2.card) == 5 :break
+        if p2.score >= 21:break
         input_val = input("Draw another card (y/n): ")
         if input_val.lower() == 'y':
             p2.get_card(deck.get_card())
@@ -248,21 +255,23 @@ def play(player1='Computer', player2='Player', d=None, RENDER=False):
             break
 
     while True:
+        if len(p1.card) == 2:
+            if p1.score == 21:
+                break
+            else: 
+                p1.get_card(deck.get_card())
+                continue
         if p1.checkEndGame():break
-        if p1.get_more_card():
+        if p1.get_more_card(p2.score, len(p2.card)):
             p1.get_card(deck.get_card())
             continue
-        # p1.print_normal()
         break
-
+    
     print_result(p1, p2, p1.score, p2.score)
     
-    #----------------------
-    ###-------------- student code begins here --------------###
+#==============================================Submist this block (end) ==============================================
 
 
-###--------------- student code ends here ---------------###
-## main begins here
 def testcase01():
     random.seed(2)
     play()
@@ -316,34 +325,3 @@ elif q==9:
     testcase09()
 elif q==10:
     testcase10()
-
-
-
-# Welcome to MikeLab BlackJack Casino.
-#  Computer: O♥ A♠           -> 11
-#    Player: 6♣ 2♦           -> 8
-# Draw another card (y/n): y
-#    Player: 6♣ 2♦ J♠        -> 18
-# Draw another card (y/n): y
-#    Player: 6♣ 2♦ J♠ 3♠     -> 21
-# +++++++++++++++++++++++++++++++++
-#  Computer: 9♥ A♠ A♣        -> 21 ???? 9 + A == 20 but the condision is if more less than 16 draw another card
-#    Player: 6♣ 2♦ J♠ 3♠     -> 21
-# ++++++++++++++++++++++++++++++++++++++++++++++++++
-# Draw!
-# ++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-# Welcome to MikeLab BlackJack Casino.
-#  Computer: O♥ A♠           -> 11
-#    Player: 6♣ 2♦           -> 8
-# Draw another card (y/n): y
-#    Player: 6♣ 2♦ J♠        -> 18
-# Draw another card (y/n): y
-#    Player: 6♣ 2♦ J♠ 3♠     -> 21
-# +++++++++++++++++++++++++++++++++
-#  Computer: 9♥ A♠           -> 20
-#    Player: 6♣ 2♦ J♠ 3♠     -> 21
-# ++++++++++++++++++++++++++++++++++++++++++++++++++
-# Player wins.
-# ++++++++++++++++++++++++++++++++++++++++++++++++++

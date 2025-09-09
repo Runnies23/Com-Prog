@@ -1,7 +1,7 @@
 class Course:
     def __init__(self, title, code, credit):
         self.title = title 
-        self.code = code
+        self.course_id = code
         self.credit = credit
 
 class Teacher:

@@ -1,4 +1,0 @@
-Sum of column#0 is 201.0
-Sum of column#1 is 191.0
-Sum of column#2 is 149.0
-Sum of column#3 is 184.0
