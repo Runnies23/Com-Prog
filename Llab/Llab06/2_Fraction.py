@@ -38,6 +38,8 @@ class Fraction():
     def __str__(self):
         self.gcd()
         return f"{self.numerator} / {self.denominator}"
+    
+    
 
 print(Fraction(22,14))
 # 11 / 7
