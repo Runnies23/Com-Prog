@@ -13,14 +13,14 @@ def printMat(m):
     print(row)
   print()
 
-filename = './case/gauss10.txt'
+# filename = './case/gauss10.txt'
 
 
-# filename = input("Enter filename: ")
+filename = input("Enter filename: ")
 m = readMat(filename)
 
 """
-case 7, 8, 10 is missing (the response is correct) but why error ? 
+case 7, 8, 10 is missing (the response is correct) but why error ? (multiplyer deal with 0)
 """
 
 class Fraction():
@@ -101,7 +101,7 @@ class Matrix:
     def __init__(self):
         pass
 
-class Rows: #Seq of the Fraction
+class Rows:
     def __init__(self, lst_of_frac:list, name=None):
         self.seq = lst_of_frac
         self.name = name
@@ -109,7 +109,6 @@ class Rows: #Seq of the Fraction
     def multiply(self, multiplyer:Fraction):
         rst = []
         for i in self.seq:
-            # i.multiply(multiplyer)
             rst.append(i * multiplyer)
         self.seq = Rows(rst)
 
@@ -117,12 +116,10 @@ class Rows: #Seq of the Fraction
         divider.swap()
         rst = []
         for i in self.seq:
-            # i.divided(divider)
             rst.append(i * divider)
         self.seq = Rows(rst)
         
     def __sub__(self, another_seq):
-        # raise isinstance(another_seq, Rows)
     
         rst = []
 
@@ -134,7 +131,6 @@ class Rows: #Seq of the Fraction
         return rst
     
     def clone(self):
-        # return Rows(self.seq[:], "copy")
         return Rows([frac.clone() for frac in self.seq], "copy")
     
     def __len__(self):
@@ -158,23 +154,6 @@ class Rows: #Seq of the Fraction
         return f"[{", ".join(string)}]"
     
 map_idx_to_char = 'a b c d e f g h i j k l m n o p q r s t u v w x y z'.split()
-# m = [
-#            [1,      -3,       4  ,     3],
-#        [2,      -5,       6,       6],
-#       [-3,       3,       4,       6,]
-#     ]
-
-# matrix = [       [1,     -2,       3   ,    9],
-#       [-1,       3,       0,      -4],
-#        [2,      -5,       5,      17]]
-
-# matrix = [
-#          [ 1,       1,       1 ,  10000],
-#        [5,       8 ,      9,   77000],
-#        [2,       0,      -1,       0],
-
-# ]
-
 
 
 matrix = []
@@ -191,8 +170,6 @@ rows = len(matrix)
 col = 0
 row = 0
 
-# print(f"cols : {cols}, rows : {rows}")
-
 print(f"Augmented Matrix:")
 printMat(matrix)
 
@@ -208,24 +185,21 @@ while row < rows:
     
     while temp_rows < rows :
         multiplyer = matrix[temp_rows][col].clone()
+
+        #when multiplyer = 0 continue into a new rows
+        if multiplyer.get_val() == 0:
+            temp_rows += 1
+            continue
     
         diff_array = matrix[row].clone()
-        # print(matrix[0].get_seq_lst())
         diff_array.multiply(multiplyer)
-        # print(matrix[0].get_seq_lst())
 
         print(f"R{row+1}'->({multiplyer})*R{row+1} {diff_array.get_seq_lst()}")
         print(f"R{temp_rows+1} ==> R{temp_rows+1}-R{row + 1}'")
-        matrix[temp_rows] =  Rows(matrix[temp_rows] - diff_array) #diff_list(matrix[temp_rows],diff_array)
+        matrix[temp_rows] =  Rows(matrix[temp_rows] - diff_array)
         del diff_array
         printMat(matrix)
-        # matrix[temp_rows] = matrix[temp_rows] - diff_array #diff_list(matrix[temp_rows],diff_array)
-        # printMat(matrix)
 
-    #     break
-    # break
-        
-        
         temp_rows += 1
     row += 1
     col += 1
@@ -245,17 +219,10 @@ while row >= 0:
     col = cols - 1
     while col >= 0:
         if count == times:
-            # print("save data:", total)
             store_data[row] = total
             break
         else:
-            # print("add : ",{store_data[col-1] * matrix[row][col-1]},"total:",total,end="\t")
-            # print(store_data[col-1].get_val(), type(store_data[col-1].get_val()))
-            # print(matrix[row][col-1].get_val(), type(matrix[row][col-1].get_val()))
-            # print(store_data[col-1].get_val(), matrix[row][col-1])
-
             total -= store_data[col-1] * matrix[row][col-1]
-            # print(total)
         count += 1
             
         col -= 1
