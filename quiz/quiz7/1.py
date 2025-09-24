@@ -78,6 +78,7 @@ def end_day(sale_dict):
         total_price = 0 
         for key, value in sale_dict.items():
             print(f"{key} {value} baht")
+            total_price += value
         print(f"Today sale : {total_price} baht")
 
 
