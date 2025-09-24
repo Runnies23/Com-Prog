@@ -71,6 +71,7 @@ def print_recipe(orders_dict, custome_name, total_price):
     print("=================")
 
 def end_day(sale_dict):
+    print("=================")
     if len(sale_dict) == 0:
         print("Today sale : 0 baht")
 
@@ -80,6 +81,7 @@ def end_day(sale_dict):
             print(f"{key} {value} baht")
             total_price += value
         print(f"Today sale : {total_price} baht")
+    print("=================")
 
 
 sale_dict = dict()
