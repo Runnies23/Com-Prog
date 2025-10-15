@@ -1,0 +1,31 @@
+test_cases = [
+    # 1. Exact match
+    {"String": "abc", "Pattern": "abc", "Output": True},
+
+    # 2. Simple mismatch
+    {"String": "abc", "Pattern": "abd", "Output": False},
+
+    # 3. Single '.' wildcard
+    {"String": "abc", "Pattern": "a.c", "Output": True},
+
+    # 4. '.' mismatch
+    {"String": "abc", "Pattern": "a.d", "Output": False},
+
+    # 5. '*' as zero occurrence
+    {"String": "ab", "Pattern": "ab*c", "Output": False},  # no 'c' at end
+
+    # 6. '*' as multiple occurrence
+    {"String": "aab", "Pattern": "c*a*b", "Output": True},
+
+    # 7. '.*' matches everything
+    {"String": "abcdef", "Pattern": ".*", "Output": True},
+
+    # 8. Leading '*'
+    {"String": "bbb", "Pattern": "b*", "Output": True},
+
+    # 9. Complex mix with '.' and '*'
+    {"String": "mississippi", "Pattern": "mis*is*p*.", "Output": False},
+
+    # 10. Zero-length string with pattern
+    {"String": "", "Pattern": "c*", "Output": True},  # * allows empty
+]

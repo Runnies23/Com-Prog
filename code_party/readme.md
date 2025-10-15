@@ -1,0 +1,1 @@
+This is the CodeParty 2025 which code is in the repositoty isn't manage (spagetti code)

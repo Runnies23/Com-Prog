@@ -18,7 +18,7 @@ def regx(text: str, pattern: str) -> bool:
         )
     else:
         return first_match and regx(text[1:], pattern[1:])
-    
+
 mystr = input("Enter string : ")
 pattern = input("Enter Pattern : ")
 
